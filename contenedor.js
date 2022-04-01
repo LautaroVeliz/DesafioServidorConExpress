@@ -33,28 +33,23 @@ class Contenedor {
         return new_id
     }
     getById(id) {
-        let objeto = undefined
+        let objeto = "ID invalido"
         this.objetos.forEach(elemento => {
             if (elemento.id === id) {
                 objeto = elemento
             }
         });
-        if (objeto == undefined) {
-            return "ID invalido"
-        }
         return objeto
     }
     getAll() {
         return this.objetos;
     }
     deleteById(id) {
-        for (let index = 0; index < this.objetos.length; index++) {
-            if (this.objetos[index].id == id) {
-                this.objetos.splice(index, index + 1)
-                break
-            }
-        }
+        let leng_origin = this.objetos.length;
+        this.objetos = this.objetos.filter((objeto) => objeto.id !== id)
+        if (this.productos.length == leng_origin) return "Objeto no encontrado"
         fs.writeFileSync('./productos.txt', JSON.stringify(this.objetos, null, 2))
+        return "Objeto borrado"
     }
 
     deleteAll() {
