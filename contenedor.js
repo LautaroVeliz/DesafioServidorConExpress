@@ -47,7 +47,7 @@ class Contenedor {
     deleteById(id) {
         let leng_origin = this.objetos.length;
         this.objetos = this.objetos.filter((objeto) => objeto.id !== id)
-        if (this.productos.length == leng_origin) return "Objeto no encontrado"
+        if (this.objetos.length == leng_origin) return "Objeto no encontrado"
         fs.writeFileSync('./productos.txt', JSON.stringify(this.objetos, null, 2))
         return "Objeto borrado"
     }
